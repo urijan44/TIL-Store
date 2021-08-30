@@ -12,6 +12,10 @@
 ### - CoreLocation
 - [GPS Error Hendling](Swift/CoreLocation/GPSErrorHandling.md)
 
+## Algorithms
+  - ### 문자열 검색
+    - [Boyer Moore](Algorithms/문자열검색/BoyerMoore.md)
+
 ## Design Pattern
 - [Class Diagram](DesignPattern/ClassDiagram/README.md)
 - [MVC](DesignPattern/StructuralDesignPattern/README.md)
