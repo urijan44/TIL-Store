@@ -15,6 +15,7 @@
 ## Algorithms
   - ### 문자열 검색
     - [Boyer Moore](Algorithms/문자열검색/BoyerMoore.md)
+    - [Palindromes](Algorithms/문자열검색/Palindromes.md)
 
 ## Design Pattern
 - [Class Diagram](DesignPattern/ClassDiagram/README.md)
