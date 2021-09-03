@@ -120,5 +120,7 @@ exampleSentences.printFormatted(formatter: format(_:))
 //What about this example?
 ```
 처음과 결과가 동일하게 나온다. 이것이 고차함수다 
+`(String) -> String` 즉 String을 파라메터로 받아 String을 반환하는 함수(여기서는 format 함수)를 `printFormatted` 가 파라메터로 받아 처리했다.
 
-이제 다른 포맷을 변경하고 싶으면 format과 같은 함수를 여러개 선언해서 동일한 방법으로 `printFormatted`메소드의 파라메터로 전달하면 된다. `printFormatted`는 전혀 건드릴 필요가 없게 된 것이다.
+이제 다른 포맷을 변경하고 싶으면 format과 같은 함수를 여러개 선언해서 동일한 방법으로 `printFormatted`메소드의 파라메터로 전달하면 된다. `printFormatted`는 전혀 건드릴 필요가 없게 된 것이다. 새로 정의하는 포멧 함수들이 `(String) -> String` 형태를 취하기만 하면 된다.
+
