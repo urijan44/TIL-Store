@@ -26,4 +26,4 @@
 - [MVC](DesignPattern/StructuralDesignPattern/README.md)
 
 ## Linux
-- [Linux Terminal Command]
+- [Linux Terminal Command](Linux/LinuxTerminalCommand.md)
