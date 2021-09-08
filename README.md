@@ -6,6 +6,9 @@
 
 ## Swift
 
+### - Foundation
+- [XMLParser]
+
 ### - UIKit
 - [Table View](Swift/UIKit/TableView/README.md)
 
@@ -24,6 +27,7 @@
 ## Design Pattern
 - [Class Diagram](DesignPattern/ClassDiagram/README.md)
 - [MVC](DesignPattern/StructuralDesignPattern/README.md)
+- [Delegation Pattern](DesignPattern/BehavioralDesignPattern/Delegation-Pattern.md)
 
 ## Linux
 - [Linux Terminal Command](Linux/LinuxTerminalCommand.md)
