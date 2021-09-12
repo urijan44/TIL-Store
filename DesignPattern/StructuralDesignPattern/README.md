@@ -9,7 +9,7 @@
 # MVC(Model-View-Controller)Pattern
 MVC패턴은 객체를 세 가지 유형으로 구분한다. `Model`, `View`, `Controller`이다.
 클래스 다이어그램으로 보면 아래와 같은 모양세를 하고 있다.
-([클래스 다이어 그램](DesignPattern/ClassDiagram/README.md))
+([클래스 다이어 그램](../ClassDiagram/README.md))
 ![](Resource/MvcClassDiagram.png)
 
 - `Model`은 애플리케이션의 데이터를 보유한다. 일반적으로 구조체 또는 클래스를 의미한다.
