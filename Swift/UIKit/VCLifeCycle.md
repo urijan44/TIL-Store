@@ -24,3 +24,24 @@
 ## 5. viewDidDIsappear()
 - 뷰 컨트롤러의 뷰가 뷰 계층에서 사라진 뒤에 호출
 - 뷰가 사라지는 것과 관련된 추가 작업
+
+## ETC.
+일반적으로 라이프 사이클이
+
+
+*Root View Controller*
+
+viewDidLoad -> viewWillAppear -> viewDidAppear
+
+(다른 뷰 호출)
+viewDidLoad -> viewWillDisappear(RootVC) -> viewWillAppear -> viewDidDisappear(RootVC) -> viewDidAppear
+
+(뷰 복귀)
+viewWillDisappear -> viewWillAppear -> viewDidDisappear -> viewDidAppear 
+
+순으로 동작하는데 뷰 계층 불러오는 방식이 만약 `popover`라면 
+
+뷰를 복귀 할 때 RootView의 WillAppear와 DidAppear는 동작하지 않는다.
+
+그리고 popover된 뷰의 경우 드래그로 잡아 내릴 수 있는데 상단을 잡아 내리기 시작하는 순간 WillDisappear를 호출한다. 
+도중에 취소하면 다시 willAppear와 DidAppear를 호출한다.
