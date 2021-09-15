@@ -23,6 +23,9 @@
 ### - Access Control
 - [Access Control](Swift/AccessControl.md)
 
+### - Testing
+- [Testing](Swift/Testing.md)
+
 ## Algorithms
   - ### 문자열 검색
     - [Boyer Moore](Algorithms/문자열검색/BoyerMoore.md)
