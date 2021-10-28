@@ -7,27 +7,27 @@
 ## Swift
 
 ### - Foundation
-- [XMLParser](Swift/Foundation/XMLParser.md)
+- [XMLParser](iOS_Swift/Foundation/XMLParser.md)
 
 ### - UIKit
-- [Table View](Swift/UIKit/TableView/README.md)
+- [Table View](iOS_Swift//UIKit/TableView/README.md)
 
 ### - CoreLocation
-- [GPS Error Hendling](Swift/CoreLocation/GPSErrorHandling.md)
+- [GPS Error Hendling](iOS_Swift//CoreLocation/GPSErrorHandling.md)
 
 ### - High Order Functions
-- [고차함수란 무엇인가?](Swift/Higher-Order-Functions/What_Is_High_Order_Function.md)
-- [표준 라이브러리의 고차함수](Swift/Higher-Order-Functions/Higher-order_functions_in_the_standard_Library.md)
-- [함수 반환형](Swift/Higher-Order-Functions/Function_as_a_return_type.md)
+- [고차함수란 무엇인가?](iOS_Swift//Higher-Order-Functions/What_Is_High_Order_Function.md)
+- [표준 라이브러리의 고차함수](iOS_Swift//Higher-Order-Functions/Higher-order_functions_in_the_standard_Library.md)
+- [함수 반환형](iOS_Swift//Higher-Order-Functions/Function_as_a_return_type.md)
 
 ### - Access Control
-- [Access Control](Swift/AccessControl.md)
+- [Access Control](iOS_Swift//AccessControl.md)
 
 ### - Testing
-- [Testing](Swift/Testing.md)
+- [Testing](iOS_Swift//Testing.md)
 
 ### - Notifications
-- [Local Notification](Swift/LocalNotification/README.md)
+- [Local Notification](iOS_Swift//LocalNotification/README.md)
 
 ### - Xcode
 - [Debugging](https://github.com/urijan44/SSAC-Task/blob/master/0929/DebugAndBraekPoint.md)
