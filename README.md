@@ -1,8 +1,7 @@
 # TIL Store
 
 ## iOS
-- iOS 기술 면접 질문
-
+- [iOS 기술 면접 질문](iOS_Swift/iOS면접질문/README.md)
 
 ## Swift
 
