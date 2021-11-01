@@ -34,6 +34,7 @@
 ### - 미분류
 
 - [Alamofire](iOS_Swift/Alamofire/README.md)
+- [Localization](iOS_Swift/Localization/README.md)
 
 ## Algorithms
   - ### 문자열 검색

@@ -61,4 +61,53 @@ Localizable.strings는 A는 B로 번역한다는 데이터가 담긴 파일로 L
 "dateString" = "yyyy년 MM월 dd일";
 ```
 이런식으로 `search`라는 키는 `검색`으로 번역된다는 뜻이다. 
+
 ![](src/localization1.png)
+
+- 파일 인스펙터를 보면 사진의 경우 English, Korean모두 체크 되어 있는데 아마 위 설정대로 했으면 Korean만 설정되어 있다., 앱 UI가 완성되었을 즘 Localizable.strings를 완성하고 English를 체크하게 되면 프로젝트 네비게이터에서 다음과 같이 보인다.
+
+![](src/localization2.png)
+- 여태 작성한 내용은 Korean 파일에 모두 작성되어있고, 이 때 English 파일에는 Korean파일에 작성된 것 과 같은 똑같은 내용이 있다. 값을 영어로 번역해주면 된다. 이를 굳이 English를 나중에 체크하는 이유인데, UI가 끝나고, korean Localizable파일 작성이 다 띁난 다음에 하면 코드를 일일이 다시 작성하는 불편함을 없앨 수 있다.
+
+## Localizable.strings 사용하기
+- 예를들어 
+```Swift
+titleLabel.text = "Hello SeSAC!"
+```
+이라고 한다면 기존에는 텍스트에 String을 직접 기입을 해줬을 것이다. 
+이 작업을 이제 Localizable 파일에서 설정한 키값을 전달해주게 될 것인데
+
+Localizable.strings에 
+```Swift
+"greeting" = "안녕 SeSAC!"
+```
+이라고 작성이 되어있다고 하면
+
+```Swift
+titleLabel.text = NSLocalizedString("greeting", comment: "Greeting")
+```
+이렇게 작성해주면 해당 `NSLocalizedString` 메소드가 `Localizable.strings`의 `greeting`이라는 키를 참고해 `안녕 SeSAC`라는 값을 가져온다. 만약 Localizable.strings (English)파일에는
+
+```Swift
+"greeting" = "Hello SeSAC!"
+```
+라고 되어있다면 앱 언어설정이 영어로 되어있다면 자동으로 Hello SeSAC!으로 가져올 것이다.
+
+- String extension으로 코드 단축하기
+```Swift
+extension String {
+  func localized(tableName: String = "Localizable") -> String {
+    NSLocalizedString(self, tableName: tableName, bundle: .main, value: "", comment: self)
+  }
+}
+```
+- 위와 같이 코드를 작성해서 문자열을 작성할 때 시간을 단축 해볼 수 있다
+tableName은 Localizable.strings의 파일 이름이 들어가게 되는데 Localizable이 디폴트 이고, 다른 지역화 strings를 나누어서 사용하고 싶다면 그 파일명을 tableName으로 전달해 주면 된다.
+
+## InfoPlist.strings
+- 권한 요청에 대한 알림을 띄울 때 나오는 Description의 경우도 지역화를 해야 하는데 이 때 지역화 strings파일 이름도 `InfoPlist`로 정해져 있다. 해당 파일 이름으로 똑같이 strings파일을 만들고 지역화를 한다.
+- 이때 키 값은 info.plist에 있는 키값을 사용해야 하는데 info.plist를 source code로 열어 키값을 확인하는게 좋다.
+```Swift
+NSPhotoLibraryUsageDescription = "일기에 사진을 활용하기 위해, 사진 앨범 접근에 대한 권한이 필요합니다.";
+NSCameraUsageDescription = "일기에 사진을 활용하기 위해, 카메라 접근에 대한 권한이 필요합니다.";
+```
