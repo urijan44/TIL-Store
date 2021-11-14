@@ -10,6 +10,7 @@
 
 ### - UIKit
 - [Table View](iOS_Swift//UIKit/TableView/README.md)
+- [Collection View](iOS_Swift//UIKit/CollectionView/README.md)
 
 ### - CoreLocation
 - [GPS Error Hendling](iOS_Swift//CoreLocation/GPSErrorHandling.md)
