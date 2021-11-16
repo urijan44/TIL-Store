@@ -36,6 +36,8 @@
 
 - [Alamofire](iOS_Swift/Alamofire/README.md)
 - [Localization](iOS_Swift/Localization/README.md)
+- [라이선스](App/License.md)
+
 
 ## Algorithms
   - ### 문자열 검색
