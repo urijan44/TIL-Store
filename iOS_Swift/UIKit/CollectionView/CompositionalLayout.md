@@ -45,3 +45,124 @@ section.orthogonalScrollingBehavior = .groupPaging
 - paging: 말그대로 페이징 처럼 딱 맞춰서 멈춰준다. 섹션 기준이라 그룹의 사이즈를 고려하지 않고 쓰면 이상하다
 - groupPaging: 그룹 기준으로 페이징을 해준다. 그룹 경계에 맞게 딱딱 멈춰준다.
 - groupPagingCentered: 그룹 페이징 이 뷰의 가운데에서 딱 맞춰 멈춰준다. 텍스트 뷰 정렬에서 가운데 정렬로 볼 수 있겠다.
+
+## Header(Footer)
+- 테이블뷰나 FlowLayout에서 했던 것처럼 헤더에 대한 클래스를 생성 후 추가할 수 있다. 방식은 똑같은데 방법은 다르다고 해야하나?
+- 우선 콜렉션 뷰의 헤더(푸터)는 `UICollectionReusableView` 클래스로 정의한다. 우선 간단한 Label을 출력하는 클래스
+```Swift
+//Raywenderlich
+import UIKit
+
+final class TitleSupplementaryView: UICollectionReusableView {
+  static let reuseIdentifier = String(describing: TitleSupplementaryView.self)
+  
+  let textLabel = UILabel()
+  
+  override init(frame: CGRect) {
+    super.init(frame: frame)
+    configure()
+  }
+  
+  required init?(coder: NSCoder) {
+    fatalError("init(coder:) is not implemented")
+  }
+  
+  private func configure() {
+    addSubview(textLabel)
+    textLabel.font = .preferredFont(forTextStyle: .title2)
+    textLabel.translatesAutoresizingMaskIntoConstraints = false
+    
+    let inset: CGFloat = 10
+    
+    NSLayoutConstraint.activate([
+      textLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: inset),
+      textLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -inset),
+      textLabel.topAnchor.constraint(equalTo: topAnchor, constant: inset),
+      textLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -inset)
+    ])
+  }
+}
+```
+
+- 이렇게 작성 된 헤더 클래스는 CompositionalLayout Configure에 추가해주면 된다.
+
+# SupplementaryView
+- 넷플릭스 앱 같은 걸 보면 컬렉션 뷰 아이템에 순위 숫자가 겹쳐서 보인다. 아이템에 다른 아이템을 겹쳐서 보이게 하는 방법인데 이 또한 `SupplementaryItem`으로 구현이 가능하다.
+
+- 우선 kind를 설정
+```Swift
+static let badgeElememtKind = "badge-element-kind"
+```
+
+- 미리 만들어둔 View를 collectionView에 등록하고
+```Swift
+collectionView.register(BadgeSupplementaryView.self, forSupplementaryViewOfKind: QueuedTutorialController.badgeElememtKind, withReuseIdentifier: BadgeSupplementaryView.reuseIdentifier)
+```
+- 참고로 SupplementaryItem의 경우 `UICollectionReusableView`를 상속해서 만든다.
+
+- 컬랙션 뷰 layout 정의하는 곳에서 다음과 같이 작성해볼 수 있다.
+```Swift
+ func configureCollectionViewLayout() -> UICollectionViewCompositionalLayout {
+    let anchorEdges: NSDirectionalRectEdge = [.top, .trailing]
+    let offset = CGPoint(x: 0.3, y: -0.3)
+    let badgeAnchor = NSCollectionLayoutAnchor(edges: anchorEdges, fractionalOffset: offset)
+    
+    let badgeSize = NSCollectionLayoutSize(widthDimension: .absolute(20), heightDimension: .absolute(20))
+    let badge = NSCollectionLayoutSupplementaryItem(layoutSize: badgeSize, elementKind: QueuedTutorialController.badgeElememtKind, containerAnchor: badgeAnchor)
+
+    ...
+    ...
+    let item = NSCollectionLayoutItem(layoutSize: itemSize, supplementaryItems: [badge])
+```
+
+- 앵커는 아이템에 어디 위치에 시킬 것인지 결정하는데 `NSCollectionLayoutAnchor`를 통해서 만들 수 있다. `NSCollectionLayoutAnchor`가 정의된 문설르 보면
+```Swift
+
+    //                       +------------------+  +------+   +------------------+
+    //                       | [.top, .leading] |  |[.top]|   | [.top,.trailing] |
+    //                       +--+---------------+  +---+--+   +---------------+--+
+    //                          |                      |                      |
+    //                          v                      v                      v
+    //                       +-----+----------------+-----+----------------+-----+
+    //                       |~~~~~|                |~~~~~|                |~~~~~|
+    //                       |~~~~~|                |~~~~~|                |~~~~~|
+    //                       +-----+                +-----+                +-----+
+    //                       |                                                   |
+    //                       +-----+                                       +-----+
+    //   +--------------+    |~~~~~|                                       |~~~~~|    +-------------+
+    //   |  [.leading]  |--->|~~~~~|                                       |~~~~~|<---| [.trailing] |
+    //   +--------------+    +-----+                                       +-----+    +-------------+
+    //                       |                                                   |
+    //                       +-----+                +-----+                +-----+
+    //                       |~~~~~|                |~~~~~|                |~~~~~|
+    //                       |~~~~~|                |~~~~~|                |~~~~~|
+    //                       +-----+----------------+-----+----------------+-----+
+    //                          ^                      ^                      ^
+    //                          |                      |                      |
+    //                      +---+---------------+ +----+----+  +--------------+----+
+    //                      |[.bottom, .leading]| |[.bottom]|  |[.bottom,.trailing]|
+    //                      +-------------------+ +---------+  +-------------------+
+    //
+    // Edges are specified as shown above.
+  ```
+  - 친절하게 위치를 만들어 놓았다.
+  - 위 방법을 통해 앵커를 만들고 난뒤, 헤더와 다르게 `NSCollectionLayoutBoundarySupplementaryItem`이 아닌 `NSCollectionLayoutSupplementaryItem`로 인스턴스를 생성해서 만든다.
+
+  - dataSource도 생성해야 한다.
+  ```Swift
+  dataSource.supplementaryViewProvider = { [weak self] (collectionView, kind, indexPath) -> UICollectionReusableView? in
+      
+      guard let self = self,
+            let tutorial = self.dataSource.itemIdentifier(for: indexPath),
+            let badge = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: BadgeSupplementaryView.reuseIdentifier, for: indexPath) as? BadgeSupplementaryView else { return nil }
+      
+      if tutorial.updateCount > 0 {
+        badge.isHidden = false
+      } else {
+        badge.isHidden = true
+      }
+      
+      return badge
+    }
+  ```
+  - DataSource는 마찬가지로 supplementaryViewProvider로 생성할 수 있다.
