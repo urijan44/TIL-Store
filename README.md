@@ -37,7 +37,8 @@
 - [Alamofire](iOS_Swift/Alamofire/README.md)
 - [Localization](iOS_Swift/Localization/README.md)
 - [라이선스](App/License.md)
-- [CoreHaptics]()
+- [CoreHaptics](https://gookbobhenry.notion.site/Core-Haptics-b267c28101174dd1a647308586a2b110)
+
 
 
 ## Algorithms
