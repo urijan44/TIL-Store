@@ -66,6 +66,7 @@
 ## Firebase
  - [Firebase 패지지 설치하기](Firebase/PackageInstall.md)
  - [OAuth Google Sign In](Firebase/GoogleSignIn.md)
+ - [Firebase Phone Auth](https://velog.io/@hey_hen/Firebase-Auth-전화번호-회원가입), [코드](Firebase/FirebasePhoneAuthPractice)
 
 ## Git
  - [Git 찍먹하기](Git/Git찍먹하기/Git찍먹하기.md)
