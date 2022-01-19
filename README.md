@@ -43,6 +43,7 @@
 - [Localization](iOS_Swift/Localization/README.md)
 - [라이선스](App/License.md)
 - [CoreHaptics](https://gookbobhenry.notion.site/Core-Haptics-b267c28101174dd1a647308586a2b110)
+- [SwiftGen](https://velog.io/@hey_hen/SwfitGen-사용기-Homebrew), [코드](iOS_Swift/SwiftGenPractice)
 
 
 
